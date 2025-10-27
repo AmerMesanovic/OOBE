@@ -1,6 +1,16 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: 100vh;
+    overflow-y: auto !important;
+  }
 
   .clock-container {
     margin-bottom: 2rem;

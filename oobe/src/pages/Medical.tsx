@@ -1,8 +1,9 @@
-import { Container, Image } from "react-bootstrap";
+import { Container, Image, Col } from "react-bootstrap";
 import "./Medical.scss";
 import CardComponent from "../components/CardComponent";
 import { cardiology, logo, settingsEthernet, warning } from "../assets/images";
 import { FormattedMessage } from "react-intl";
+import { NavLink } from "react-router-dom";
 
 const Medical = () => {
   return (
@@ -26,53 +27,61 @@ const Medical = () => {
       </div>
 
       <div className="cards-wrapper">
-        <CardComponent
-          icon={cardiology}
-          title={
-            <FormattedMessage
-              id="pages.Medical.smartClinicalRecord.title"
-              defaultMessage="Smart Clinical Record"
-            />
-          }
-          description={
-            <FormattedMessage
-              id="pages.Medical.smartClinicalRecord.desc"
-              defaultMessage="Access patient data and request info and updates."
-            />
-          }
-        />
+        <Col>
+          <CardComponent
+            icon={cardiology}
+            title={
+              <FormattedMessage
+                id="pages.Medical.smartClinicalRecord.title"
+                defaultMessage="Smart Clinical Record"
+              />
+            }
+            description={
+              <FormattedMessage
+                id="pages.Medical.smartClinicalRecord.desc"
+                defaultMessage="Access patient data and request info and updates."
+              />
+            }
+          />
+        </Col>
 
-        <CardComponent
-          icon={warning}
-          title={
-            <FormattedMessage
-              id="pages.general.alertManagement.title"
-              defaultMessage="Alert Management"
+        <Col>
+          <NavLink to="/medical-alert-management" className="nav-link">
+            <CardComponent
+              icon={warning}
+              title={
+                <FormattedMessage
+                  id="pages.general.alertManagement.title"
+                  defaultMessage="Alert Management"
+                />
+              }
+              description={
+                <FormattedMessage
+                  id="pages.general.alertManagement.desc"
+                  defaultMessage="View and resolve machine alerts."
+                />
+              }
             />
-          }
-          description={
-            <FormattedMessage
-              id="pages.general.alertManagement.desc"
-              defaultMessage="View and resolve machine alerts."
-            />
-          }
-        />
+          </NavLink>
+        </Col>
 
-        <CardComponent
-          icon={settingsEthernet}
-          title={
-            <FormattedMessage
-              id="pages.Medical.check.title"
-              defaultMessage="Sample Integrity Check"
-            />
-          }
-          description={
-            <FormattedMessage
-              id="pages.Medical.check.desc"
-              defaultMessage="Detect defects and verify sample integrity."
-            />
-          }
-        />
+        <Col>
+          <CardComponent
+            icon={settingsEthernet}
+            title={
+              <FormattedMessage
+                id="pages.Medical.check.title"
+                defaultMessage="Sample Integrity Check"
+              />
+            }
+            description={
+              <FormattedMessage
+                id="pages.Medical.check.desc"
+                defaultMessage="Detect defects and verify sample integrity."
+              />
+            }
+          />
+        </Col>
       </div>
     </Container>
   );

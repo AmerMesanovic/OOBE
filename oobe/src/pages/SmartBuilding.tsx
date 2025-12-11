@@ -1,8 +1,10 @@
-import { Container, Image } from "react-bootstrap";
+import { Container, Image, Col } from "react-bootstrap";
 import "./SmartBuilding.scss";
 import CardComponent from "../components/CardComponent";
 import { falling, interactiveSpace, logo, warning } from "../assets/images";
 import { FormattedMessage } from "react-intl";
+import "./SmartAlertManagement";
+import { NavLink } from "react-router-dom";
 
 const SmartBuilding = () => {
   return (
@@ -26,53 +28,65 @@ const SmartBuilding = () => {
       </div>
 
       <div className="cards-wrapper">
-        <CardComponent
-          icon={interactiveSpace}
-          title={
-            <FormattedMessage
-              id="pages.SmartBuilding.smartLobby.title"
-              defaultMessage="Smart Lobby"
+        <Col>
+          <NavLink to="/smart-alert-management" className="nav-link">
+            <CardComponent
+              icon={interactiveSpace}
+              title={
+                <FormattedMessage
+                  id="pages.SmartBuilding.smartLobby.title"
+                  defaultMessage="Smart Lobby"
+                />
+              }
+              description={
+                <FormattedMessage
+                  id="pages.SmartBuilding.smartLobby.desc"
+                  defaultMessage="Recognize residents and access condo info."
+                />
+              }
             />
-          }
-          description={
-            <FormattedMessage
-              id="pages.SmartBuilding.smartLobby.desc"
-              defaultMessage="Recognize residents and access condo info."
-            />
-          }
-        />
+          </NavLink>
+        </Col>
 
-        <CardComponent
-          icon={warning}
-          title={
-            <FormattedMessage
-              id="pages.general.alertManagement.title"
-              defaultMessage="Alert Management"
+        <Col>
+          <NavLink to="/smart-alert-management" className="nav-link">
+            <CardComponent
+              icon={warning}
+              title={
+                <FormattedMessage
+                  id="pages.general.alertManagement.title"
+                  defaultMessage="Alert Management"
+                />
+              }
+              description={
+                <FormattedMessage
+                  id="pages.general.alertManagement.desc"
+                  defaultMessage="View and resolve machine alerts."
+                />
+              }
             />
-          }
-          description={
-            <FormattedMessage
-              id="pages.general.alertManagement.desc"
-              defaultMessage="View and resolve machine alerts."
-            />
-          }
-        />
+          </NavLink>
+        </Col>
 
-        <CardComponent
-          icon={falling}
-          title={
-            <FormattedMessage
-              id="pages.SmartBuilding.detection.title"
-              defaultMessage="Crowd and fall detection"
+        <Col>
+          <NavLink to="/smart-alert-management" className="nav-link">
+            <CardComponent
+              icon={falling}
+              title={
+                <FormattedMessage
+                  id="pages.SmartBuilding.detection.title"
+                  defaultMessage="Crowd and fall detection"
+                />
+              }
+              description={
+                <FormattedMessage
+                  id="pages.SmartBuilding.detection.desc"
+                  defaultMessage="Count people and detect falls in common areas."
+                />
+              }
             />
-          }
-          description={
-            <FormattedMessage
-              id="pages.SmartBuilding.detection.desc"
-              defaultMessage="Count people and detect falls in common areas."
-            />
-          }
-        />
+          </NavLink>
+        </Col>
       </div>
     </Container>
   );

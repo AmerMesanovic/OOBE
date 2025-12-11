@@ -86,6 +86,39 @@
   "components.SystemUsageLog.usageUpdate": {
     "defaultMessage": "Usage update"
   },
+  "industrialAlertManagement.dischargePressure": {
+    "defaultMessage": "DISCHARGE PRESSURE"
+  },
+  "industrialAlertManagement.energyConsumption": {
+    "defaultMessage": "ENERGY CONSUMPTION"
+  },
+  "industrialAlertManagement.fanSpeed": {
+    "defaultMessage": "FAN SPEED"
+  },
+  "industrialAlertManagement.internalHumidity": {
+    "defaultMessage": "INTERNAL HUMIDITY"
+  },
+  "industrialAlertManagement.suctionPressure": {
+    "defaultMessage": "SUCTION PRESSURE"
+  },
+  "industrialAlertManagement.systemStatus": {
+    "defaultMessage": "SYSTEM STATUS"
+  },
+  "medicalAlertManagement.coolingSystem": {
+    "defaultMessage": "COOLING SYSTEM"
+  },
+  "medicalAlertManagement.gantryTemperature": {
+    "defaultMessage": "GANTRY TEMPERATURE"
+  },
+  "medicalAlertManagement.systemStatus": {
+    "defaultMessage": "SYSTEM STATUS"
+  },
+  "medicalAlertManagement.tubeCurrent": {
+    "defaultMessage": "TUBE CURRENT"
+  },
+  "medicalAlertManagement.tubeStatus": {
+    "defaultMessage": "TUBE STATUS"
+  },
   "pages.Dashboard.title": {
     "defaultMessage": "Dashboard"
   },
@@ -175,5 +208,20 @@
   },
   "pages.general.title": {
     "defaultMessage": "What would you like to do?"
+  },
+  "smartAlertManagement.gantryTemperature": {
+    "defaultMessage": "GANTRY TEMPERATURE"
+  },
+  "smartAlertManagement.inverterStatus": {
+    "defaultMessage": "INVERTER STATUS"
+  },
+  "smartAlertManagement.plantStatus": {
+    "defaultMessage": "PLANT STATUS"
+  },
+  "smartAlertManagement.powerSentToGrid": {
+    "defaultMessage": "POWER SENT TO GRID"
+  },
+  "smartAlertManagement.selfConsumption": {
+    "defaultMessage": "SELF-CONSUMPTION"
   }
 }

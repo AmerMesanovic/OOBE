@@ -1,0 +1,45 @@
+.production-graph-card {
+  width: 100%;
+  margin: 0 auto;
+  max-height: 350px;
+  height: 100%;
+  background-color: #131313 !important;
+
+  .card-header {
+    border-bottom: none;
+  }
+
+  .card-title {
+    color: #989898;
+  }
+
+  .usage-section {
+    .fw-semibold {
+      color: #ffffff;
+    }
+
+    .apexcharts-canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-block;
+
+      &.dot-default {
+        background-color: #2c8926;
+      }
+
+      &.dot-suction-pressure {
+        background-color: #65b861;
+      }
+
+      &.dot-discharge-pressure {
+        background-color: #63abfd;
+      }
+    }
+  }
+}

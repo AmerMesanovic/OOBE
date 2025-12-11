@@ -1,0 +1,25 @@
+.production-graph-card {
+  width: 100%;
+  margin: 0 auto;
+  max-height: 350px;
+  height: 100%;
+  background-color: #131313 !important;
+
+  .card-title {
+    color: #989898;
+  }
+
+  .card-text {
+    color: #ffffff;
+  }
+
+  .usage-section {
+    .fw-semibold {
+      color: #ffffff;
+    }
+    .apexcharts-canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}

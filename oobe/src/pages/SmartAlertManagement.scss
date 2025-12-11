@@ -1,0 +1,54 @@
+.smart-building-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow-y: auto;
+  background-color: #000 !important;
+
+  @media (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: none;
+    overflow-y: auto !important;
+    overflow-x: auto !important;
+  }
+
+  .clock-container {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+  }
+  .cards-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 1rem auto;
+    max-width: 100%;
+    height: auto;
+    width: 20%;
+    padding: 0.8rem;
+    margin-bottom: 8rem;
+  }
+
+  .close-icon-button {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    padding: 8px !important;
+    border-radius: 12px;
+    color: white;
+    &:hover {
+      background-color: #222;
+      color: white;
+    }
+  }
+}

@@ -14,6 +14,8 @@ import playCircle from "./play_circle.png";
 import touchLong from "./touch_long.png";
 import hd from "./hd.png";
 import settings from "./settings.png";
+import rgbPattern1 from "./rgb_pattern1.jpg";
+import rgbPattern2 from "./rgb_pattern2.jpg";
 
 export {
   logo,
@@ -32,4 +34,6 @@ export {
   playCircle,
   touchLong,
   settings,
+  rgbPattern1,
+  rgbPattern2,
 };

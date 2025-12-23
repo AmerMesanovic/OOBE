@@ -15,6 +15,7 @@ import MedicalAlertManagement from "./pages/MedicalAlertManagement";
 import IndustrialAlertManagement from "./pages/IndustrialAlertManagement";
 import { useLocation } from "react-router-dom";
 import VideoPlayerTestTool from "./pages/VideoPlayerTestTool";
+import RGBPatternTestTool from "./pages/RGBPatternTestTool";
 
 const HIDE_SIDEBAR_ROUTES = [
   "/medical-alert-management",
@@ -23,6 +24,7 @@ const HIDE_SIDEBAR_ROUTES = [
   "/smart-building",
   "/medical",
   "/industrial",
+  "/rgb-pattern-test-tool",
 ];
 
 function App() {
@@ -61,6 +63,10 @@ function App() {
               element={<IndustrialAlertManagement apiClient={apiClient} />}
             />
             <Route path="/video-player" element={<VideoPlayerTestTool />} />
+            <Route
+              path="/rgb-pattern-test-tool"
+              element={<RGBPatternTestTool />}
+            />
             <Route
               path="/hub"
               element={

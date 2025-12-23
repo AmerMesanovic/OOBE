@@ -19,15 +19,17 @@ const TestingTool = () => {
       </h1>
 
       <div className="cards-wrapper">
-        <CardComponent
-          icon={gradient}
-          title={
-            <FormattedMessage
-              id="pages.TestingTool.rgbPattern"
-              defaultMessage="RGB pattern"
-            />
-          }
-        />
+        <NavLink to="/rgb-pattern-test-tool" className="nav-link">
+          <CardComponent
+            icon={gradient}
+            title={
+              <FormattedMessage
+                id="pages.TestingTool.rgbPattern"
+                defaultMessage="RGB pattern"
+              />
+            }
+          />
+        </NavLink>
 
         <CardComponent
           icon={hd}

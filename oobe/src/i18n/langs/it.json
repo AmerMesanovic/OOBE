@@ -114,7 +114,7 @@
     "defaultMessage": "Dashboard"
   },
   "components.Sidebar.demo": {
-    "defaultMessage": "Demo App"
+    "defaultMessage": "Demo app"
   },
   "components.Sidebar.exit": {
     "defaultMessage": "Exit"
@@ -243,7 +243,7 @@
     "defaultMessage": "Smart Building"
   },
   "pages.DemoApp.title": {
-    "defaultMessage": "Demo Apps"
+    "defaultMessage": "Demo apps"
   },
   "pages.IndustrialAutomation.plant.desc": {
     "defaultMessage": "Get reports and insights as the plant manager."

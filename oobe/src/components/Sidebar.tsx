@@ -56,7 +56,7 @@ const Sidebar = () => {
               >
                 <FormattedMessage
                   id="components.Sidebar.demo"
-                  defaultMessage="Demo App"
+                  defaultMessage="Demo app"
                 />
               </NavLink>
               <NavLink

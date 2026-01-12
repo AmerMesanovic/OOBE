@@ -36,7 +36,7 @@ const SystemUsageLog = ({ usageLogs }: SystemUsageLogProps) => {
                         className="d-flex align-items-center gap-2"
                       >
                         <span className="dot dot-cpu" />
-                        <small className="text-secondary">
+                        <small>
                           <FormattedMessage
                             id="components.SystemUsageLog.cpu"
                             defaultMessage={"CPU"}
@@ -50,7 +50,7 @@ const SystemUsageLog = ({ usageLogs }: SystemUsageLogProps) => {
                         className="d-flex align-items-center gap-2"
                       >
                         <span className="dot dot-ram" />
-                        <small className="text-secondary">
+                        <small>
                           <FormattedMessage
                             id="components.SystemUsageLog.ram"
                             defaultMessage={"RAM"}
@@ -64,7 +64,7 @@ const SystemUsageLog = ({ usageLogs }: SystemUsageLogProps) => {
               </Col>
 
               <Col xs={4} className="text-end">
-                <small className="text-secondary">
+                <small>
                   {log.date}, {log.time}
                 </small>
               </Col>

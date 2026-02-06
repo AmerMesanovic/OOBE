@@ -1,1 +1,14 @@
-{}
+{
+  "loading": {
+    "defaultMessage": "Loading..."
+  },
+  "overview": {
+    "defaultMessage": "Patient Overview"
+  },
+  "reports": {
+    "defaultMessage": "Medical Reports"
+  },
+  "vitalSigns": {
+    "defaultMessage": "Vital Signs"
+  }
+}

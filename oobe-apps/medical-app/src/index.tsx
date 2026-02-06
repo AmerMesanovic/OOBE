@@ -1,11 +1,10 @@
 import type { Root } from "react-dom/client";
 import { createRoot } from "react-dom/client";
 import { IntlProvider } from "react-intl";
-
-import App, { AppProps } from "./App";
-
 import en from "./i18n/langs-compiled/en.json";
 import it from "./i18n/langs-compiled/it.json";
+import "react-datepicker/dist/react-datepicker.css";
+import App, { AppProps } from "./App";
 
 const messages = { en, it };
 

@@ -1,8 +1,10 @@
-import { JSX, useState } from "react";
+import { JSX, useEffect, useMemo, useState } from "react";
 import { Container, Row, Col, Spinner, Card } from "react-bootstrap";
 import { FormattedMessage } from "react-intl";
 import Sidebar, { SidebarSection } from "./components/Sidebar";
 import PatientOverview from "./components/PatientOverview";
+import AstarteAPIClient from "./api/AstarteAPIClient";
+import { PatientOverviewData } from "types";
 
 export type AppProps = {
   astarteUrl: URL;
@@ -12,13 +14,38 @@ export type AppProps = {
 };
 
 const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
-  const [dataFetching, _] = useState(false);
   const [selectedSection, setSelectedSection] =
     useState<SidebarSection>("overview");
+  const [patientOverview, setPatientOverview] = useState<PatientOverviewData[]>(
+    [],
+  );
+  const [failedToLoad, setFailedToLoad] = useState<boolean>(false);
+  const [dataFetching, setDataFetching] = useState(false);
 
   const handleSectionChange = (e: SidebarSection) => {
     setSelectedSection(e);
   };
+
+  const astarteClient = useMemo(() => {
+    return new AstarteAPIClient({ astarteUrl, realm, token });
+  }, [astarteUrl, realm, token]);
+
+  useEffect(() => {
+    setDataFetching(true);
+    astarteClient
+      .getPatientOverview(deviceId)
+      .then((patientData) => {
+        setPatientOverview([patientData]);
+        setFailedToLoad(false);
+      })
+      .catch(() => {
+        setFailedToLoad(true);
+        setPatientOverview([]);
+      })
+      .finally(() => {
+        setDataFetching(false);
+      });
+  }, [astarteClient, deviceId]);
 
   const sectionContent: Record<SidebarSection, JSX.Element> = {
     overview: <PatientOverview />,

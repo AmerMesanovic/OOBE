@@ -1,1 +1,17 @@
-{}
+{
+  "camera": {
+    "defaultMessage": "Camera ({cameraId})"
+  },
+  "cameraTitle": {
+    "defaultMessage": "{cameraId}"
+  },
+  "history": {
+    "defaultMessage": "History"
+  },
+  "historyTitle": {
+    "defaultMessage": "All Cameras History"
+  },
+  "loading": {
+    "defaultMessage": "Loading..."
+  }
+}

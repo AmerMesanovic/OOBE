@@ -13,3 +13,19 @@ export type MedicalReportsData = {
   facility: string;
   date: Date;
 };
+
+export type VitalSignsData = {
+  ecg: number;
+  systolicPressure: number;
+  diastolicPressure: number;
+  oxygenSaturation: number;
+  timestamp: Date;
+};
+
+export type VitalSignsDto = {
+  ecg: number;
+  systolic_pressure: number;
+  diastolic_pressure: number;
+  oxygen_saturation: number;
+  timestamp: Date;
+};

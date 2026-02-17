@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import Sidebar, { SidebarSection } from "./components/Sidebar";
 import PatientOverview from "./components/PatientOverview";
 import AstarteAPIClient from "./api/AstarteAPIClient";
-import { PatientOverviewData, MedicalReportsData } from "types";
+import { PatientOverviewData, MedicalReportsData, VitalSignsData } from "types";
 import MedicalReports from "./components/MedicalReports";
 
 export type AppProps = {
@@ -23,43 +23,114 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
   const [medicalReports, setMedicalReports] = useState<MedicalReportsData[]>(
     [],
   );
+  const [vitalSigns, setVitalSigns] = useState<VitalSignsData[]>([]);
   const handleSectionChange = (e: SidebarSection) => {
     setSelectedSection(e);
   };
-
+  const generateSalt = () => Math.random().toString(36).slice(2);
   const astarteClient = useMemo(() => {
     return new AstarteAPIClient({ astarteUrl, realm, token });
   }, [astarteUrl, realm, token]);
 
   useEffect(() => {
-    setDataFetching(true);
-    astarteClient
-      .getPatientOverview(deviceId)
-      .then((patientData) => {
-        setPatientOverview(patientData);
-      })
-      .catch(() => {
+    const fetchAllData = async () => {
+      setDataFetching(true);
+
+      try {
+        // Patient Overview
+        const patientData = await astarteClient.getPatientOverview(deviceId);
+        if (patientData) {
+          setPatientOverview(patientData);
+        } else {
+          setPatientOverview(null);
+        }
+
+        // Medical Reports
+        const medicalData = await astarteClient.getMedicalReports(deviceId);
+        if (medicalData && medicalData.length > 0) {
+          setMedicalReports(medicalData);
+        } else {
+          setMedicalReports([]);
+        }
+
+        // Vital Signs
+        const vitalSignsData = await astarteClient.getVitalSigns(deviceId);
+        if (vitalSignsData && vitalSignsData.length > 0) {
+          setVitalSigns(vitalSignsData);
+        } else {
+          setVitalSigns([]);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+
         setPatientOverview(null);
-      })
-      .finally(() => {
+        setMedicalReports([]);
+        setVitalSigns([]);
+      } finally {
         setDataFetching(false);
-      });
+      }
+    };
+
+    fetchAllData();
   }, [astarteClient, deviceId]);
 
-  useEffect(() => {
-    setDataFetching(true);
+  const setUpWebSocketConnection = async () => {
+    const salt = generateSalt();
+    const roomName = `${salt}:devices:${deviceId}:interfaces:com.oobe.vital.Signs`;
 
     astarteClient
-      .getMedicalReports(deviceId)
-      .then((medicalData) => {
-        setMedicalReports(medicalData);
+      .joinRoom(roomName)
+      .then(async (channel) => {
+        await astarteClient.listenForEvents(roomName, handleVitalSignsEvent);
+
+        const dataTriggerPayload = {
+          name: `datatrigger-${deviceId}`,
+          device_id: deviceId,
+          simple_trigger: {
+            type: "data_trigger",
+            on: "incoming_data",
+            interface_name: "com.oobe.vital.Signs",
+            interface_major: 0,
+            match_path: "/*",
+            value_match_operator: "*",
+          },
+        } as const;
+
+        return astarteClient.registerVolatileTrigger(
+          roomName,
+          dataTriggerPayload,
+        );
       })
-      .catch(() => {
-        setMedicalReports([]);
+      .then(() => {
+        console.log(`Watching for ${deviceId} data events`);
       })
-      .finally(() => {
-        setDataFetching(false);
+      .catch((error) => {
+        console.error("Error setting up WebSocket connection:", error);
       });
+  };
+
+  const handleVitalSignsEvent = (event: any) => {
+    const dto = event.event.value;
+
+    const newVital: VitalSignsData = {
+      ecg: dto.ecg,
+      systolicPressure: dto.systolic_pressure,
+      diastolicPressure: dto.diastolic_pressure,
+      oxygenSaturation: dto.oxygen_saturation,
+      timestamp: new Date(event.timestamp),
+    };
+
+    setVitalSigns((prev) => [newVital, ...prev].slice(0, 200));
+  };
+
+  useEffect(() => {
+    setUpWebSocketConnection();
+
+    return () => {
+      astarteClient.joinedRooms.forEach((room) => {
+        astarteClient.leaveRoom(room);
+      });
+    };
   }, [astarteClient, deviceId]);
 
   const sectionContent: Record<SidebarSection, JSX.Element> = {

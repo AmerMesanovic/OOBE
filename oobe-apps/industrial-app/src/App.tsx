@@ -5,6 +5,14 @@ import IndustrialBarChart from "./component/IndustrialBarChart";
 import { ImageData } from "types";
 import { FormattedMessage, useIntl } from "react-intl";
 
+const TOP_PRODUCTS = [
+  "APL-45Z689 pcs",
+  "ART-PLQ77673 pcs",
+  "HAS-34-6017-07_50665 pcs",
+  "SF-2110-HAS-01-00657 pcs",
+  "SMD-X330656 pcs",
+];
+
 export type AppProps = {
   astarteUrl: URL;
   realm: string;
@@ -62,6 +70,16 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
           <h1>Industrial App</h1>
 
           {error && <Alert variant="danger">{error}</Alert>}
+
+          <h6>
+            <FormattedMessage id="topProducts" defaultMessage="Top Products" />
+          </h6>
+
+          <ul className="small">
+            {TOP_PRODUCTS.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
 
           {categories.length ? (
             <IndustrialBarChart

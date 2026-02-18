@@ -7,5 +7,8 @@
   },
   "loading": {
     "defaultMessage": "Loading..."
+  },
+  "topProducts": {
+    "defaultMessage": "Top Products"
   }
 }

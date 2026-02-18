@@ -1,7 +1,9 @@
 import AstarteAPIClient from "./api/AstarteAPIClient";
 import { useEffect, useMemo, useState } from "react";
-import { Alert, Col, Row, Spinner } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import { FormattedMessage } from "react-intl";
+import HistoryCameraTable from "./components/CameraHistroyTable";
+import { CameraHistoryData } from "types";
 
 export type AppProps = {
   astarteUrl: URL;
@@ -13,7 +15,7 @@ export type AppProps = {
 const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
   const [dataFetching, setDataFetching] = useState(false);
   const [_cameraIds, setCameraIds] = useState<string[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [historyData, setHistoryData] = useState<CameraHistoryData[]>([]);
 
   const astarteClient = useMemo(() => {
     return new AstarteAPIClient({ astarteUrl, realm, token });
@@ -26,9 +28,24 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
       .getCameraIds(deviceId)
       .then((ids) => {
         setCameraIds(ids);
+
+        return Promise.all(
+          ids.map((cameraId) =>
+            astarteClient.getCameraHistory({ deviceId, cameraId }),
+          ),
+        ).then((results) => {
+          const combined: CameraHistoryData[] = results
+            .flat()
+            .sort(
+              (a, b) =>
+                new Date(b.datetime).getTime() - new Date(a.datetime).getTime(),
+            );
+
+          setHistoryData(combined);
+        });
       })
       .catch(() => {
-        setError("Failed to fetch data.");
+        [];
       })
       .finally(() => {
         setDataFetching(false);
@@ -37,7 +54,7 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
 
   return (
     <Row className="app-container p-4">
-      <Col xs={8} xl={10} className="px-4">
+      <Col className="px-4">
         {dataFetching ? (
           <div className="text-center">
             <div className="d-inline-flex align-items-center justify-content-center m-3">
@@ -50,14 +67,12 @@ const App = ({ astarteUrl, realm, deviceId, token }: AppProps) => {
             </div>
           </div>
         ) : (
-          <h5>
-            <FormattedMessage id="appTitle" defaultMessage="People counter" />
-          </h5>
-        )}
-        {error && (
-          <Alert variant="danger" onClose={() => setError(null)} dismissible>
-            {error}
-          </Alert>
+          <>
+            <h5>
+              <FormattedMessage id="appTitle" defaultMessage="People counter" />
+            </h5>
+            <HistoryCameraTable data={historyData} />
+          </>
         )}
       </Col>
     </Row>

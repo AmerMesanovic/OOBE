@@ -2,6 +2,18 @@
   "appTitle": {
     "defaultMessage": "People counter"
   },
+  "cameraHistoryTable.date": {
+    "defaultMessage": "Date"
+  },
+  "cameraHistoryTable.event": {
+    "defaultMessage": "Event"
+  },
+  "cameraHistoryTable.number": {
+    "defaultMessage": "Number"
+  },
+  "cameraHistoryTable.time": {
+    "defaultMessage": "Time"
+  },
   "loading": {
     "defaultMessage": "Loading..."
   }

@@ -44,6 +44,21 @@ import blisterPackPartial07 from "./partial_07.jpg";
 import blisterPackPartial08 from "./partial_08.jpg";
 import blisterPackPartial09 from "./partial_09.jpg";
 import blisterPackPartial10 from "./partial_10.jpg";
+import elevator_second_floor_1 from "./elevator_second_floor_1.png";
+import elevator_second_floor_2 from "./elevator_second_floor_2.png";
+import elevator_second_floor_3 from "./elevator_second_floor_3.png";
+import elevator_second_floor_4 from "./elevator_second_floor_4.png";
+import elevator_second_floor_5 from "./elevator_second_floor_5.png";
+import main_entrance_1 from "./main_entrance_1.png";
+import main_entrance_2 from "./main_entrance_2.png";
+import main_entrance_3 from "./main_entrance_3.png";
+import main_entrance_4 from "./main_entrance_4.png";
+import main_entrance_5 from "./main_entrance_5.png";
+import secondary_entrance_1 from "./secondary_entrance_1.png";
+import secondary_entrance_2 from "./secondary_entrance_2.png";
+import secondary_entrance_3 from "./secondary_entrance_3.png";
+import secondary_entrance_4 from "./secondary_entrance_4.png";
+import secondary_entrance_5 from "./secondary_entrance_5.png";
 
 export {
   logo,
@@ -92,4 +107,19 @@ export {
   blisterPackPartial08,
   blisterPackPartial09,
   blisterPackPartial10,
+  elevator_second_floor_1,
+  elevator_second_floor_2,
+  elevator_second_floor_3,
+  elevator_second_floor_4,
+  elevator_second_floor_5,
+  main_entrance_1,
+  main_entrance_2,
+  main_entrance_3,
+  main_entrance_4,
+  main_entrance_5,
+  secondary_entrance_1,
+  secondary_entrance_2,
+  secondary_entrance_3,
+  secondary_entrance_4,
+  secondary_entrance_5,
 };
